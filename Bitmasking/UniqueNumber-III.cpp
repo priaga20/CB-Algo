@@ -9,7 +9,7 @@ void uniqueNumbers(int *arr, int n)
         int t=arr[i],p=0;
         while(t>0)
         {
-            if(t&1 )  //if bit at pth index is 1
+            if(t&1 )  
             {
                 count[p]++;
             }
