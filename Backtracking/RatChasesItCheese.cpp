@@ -27,25 +27,21 @@ bool ratInMaze(char maze[10][10],int soln[10][10], int n, int m, int i, int j)
     if(maze[i][j]=='X')
         return false;
 
+    //cell is already visited
+    //imp to check otherwise will go in infinite loop
+    if(soln[i][j]==1)
+        return false;
+
     //assuming current cell is in path
     soln[i][j]=1;
 
     //rat tries to go in all 4 directions from curr position
     bool rightSuccess, downSuccess, leftSuccess, upSuccess;
 
-    //checking before searching that whether the new cell is already in path or not
-    //otherwise will go into infinite loop
-    if(soln[i][j-1]==0)
-        leftSuccess= ratInMaze(maze,soln,n,m,i,j-1);
-
-    if(soln[i][j+1]==0)
-        rightSuccess= ratInMaze(maze,soln,n,m,i,j+1);
-
-    if(soln[i-1][j]==0)
-        upSuccess= ratInMaze(maze,soln,n,m,i-1,j);
-
-    if(soln[i+1][j]==0)
-        downSuccess= ratInMaze(maze,soln,n,m,i+1,j);
+    leftSuccess= ratInMaze(maze,soln,n,m,i,j-1);
+    rightSuccess= ratInMaze(maze,soln,n,m,i,j+1);
+    upSuccess= ratInMaze(maze,soln,n,m,i-1,j);
+    downSuccess= ratInMaze(maze,soln,n,m,i+1,j);
 
     if(rightSuccess || downSuccess || leftSuccess || upSuccess)
         return true; 
